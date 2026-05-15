@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A cyberpunk personal site about me, my projects, and the heroic failure curve between the two.">
+    <meta name="theme-color" content="#05060a">
+    <title>Definitely A Website</title>
+    <link rel="preload" href="assets/cyberpunk-desk.png" as="image">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="noise" aria-hidden="true"></div>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Back to top">
+        <span class="brand-mark">DW</span>
+        <span>Definitely Website</span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-media" aria-hidden="true"></div>
+        <div class="hero-content">
+          <p class="eyebrow">personal site / digital junk drawer / mildly supervised chaos</p>
+          <h1 id="hero-title">I build questionable projects and then give them a domain name.</h1>
+          <p class="hero-copy">
+            Welcome to the glamorous command center where half-finished ideas, cursed commits,
+            and tiny victories glow under neon lighting they absolutely did not earn.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#projects">Inspect the damage</a>
+            <a class="button secondary" href="#about">Meet the operator</a>
+          </div>
+        </div>
+        <aside class="system-panel" aria-label="Current operating conditions">
+          <div class="panel-row">
+            <span>mood</span>
+            <strong>productive, allegedly</strong>
+          </div>
+          <div class="panel-row">
+            <span>uptime</span>
+            <strong id="uptime">calculating regret</strong>
+          </div>
+          <div class="panel-row">
+            <span>build status</span>
+            <strong>it works on my machine</strong>
+          </div>
+        </aside>
+      </section>
+
+      <section id="about" class="section split" aria-labelledby="about-title">
+        <div>
+          <p class="eyebrow">about</p>
+          <h2 id="about-title">Somewhere between hobbyist, tinkerer, and warranty violation.</h2>
+        </div>
+        <div class="copy-stack">
+          <p>
+            I make small web things, scripts, experiments, and other suspiciously named folders.
+            Some are useful. Some are educational. Some exist because I had caffeine and an
+            unrealistic relationship with scope.
+          </p>
+          <p>
+            This site is the public-facing shelf for the projects that survived long enough to
+            receive a README. That is not a high bar, but it is a bar, and we respect process here.
+          </p>
+        </div>
+      </section>
+
+      <section id="projects" class="section" aria-labelledby="projects-title">
+        <div class="section-heading">
+          <p class="eyebrow">projects</p>
+          <h2 id="projects-title">A curated gallery of decisions.</h2>
+        </div>
+        <div class="project-grid">
+          <article class="project-card">
+            <div class="card-topline">
+              <span class="status live">live-ish</span>
+              <span>web</span>
+            </div>
+            <h3>Static Website</h3>
+            <p>
+              The thing you are staring at. Deployed with Cloudflare Pages because infrastructure
+              should be boring, unlike my commit messages.
+            </p>
+            <a href="#top" aria-label="View Static Website">View</a>
+          </article>
+
+          <article class="project-card">
+            <div class="card-topline">
+              <span class="status warning">unstable</span>
+              <span>automation</span>
+            </div>
+            <h3>Script Pile</h3>
+            <p>
+              A majestic heap of little tools that save five minutes after only four hours of
+              setup. This is called optimization.
+            </p>
+            <a href="https://github.com/TemiTheHuntress/website" rel="noreferrer">GitHub</a>
+          </article>
+
+          <article class="project-card">
+            <div class="card-topline">
+              <span class="status cursed">haunted</span>
+              <span>experiment</span>
+            </div>
+            <h3>Abandoned Prototype</h3>
+            <p>
+              A bold concept, a clean start, a folder last modified at 02:13. We do not speak its
+              original feature list aloud.
+            </p>
+            <a href="#contact">Ask why</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="section manifesto" aria-labelledby="manifesto-title">
+        <p class="eyebrow">operating principles</p>
+        <h2 id="manifesto-title">Ship tiny, complain artistically, learn anyway.</h2>
+        <div class="principles">
+          <p>Make the thing small enough to finish.</p>
+          <p>Give bugs descriptive names so they feel accountable.</p>
+          <p>Publish before the confidence wears off.</p>
+        </div>
+      </section>
+
+      <section id="contact" class="section contact" aria-labelledby="contact-title">
+        <div>
+          <p class="eyebrow">contact</p>
+          <h2 id="contact-title">Send a signal into the fog.</h2>
+        </div>
+        <p>
+          Want to talk projects, bugs, websites, or why CSS sometimes feels like negotiating with
+          a vending machine? Find me on the usual internet ruins.
+        </p>
+        <div class="contact-links">
+          <a href="mailto:noahthefounder@protonmail.com">Email</a>
+          <a href="https://github.com/TemiTheHuntress/website" rel="noreferrer">GitHub</a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>&copy; <span id="year"></span> Definitely Website.</span>
+      <span>Powered by static files and spite.</span>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
