@@ -70,6 +70,17 @@ a {
     repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.03) 0 1px, transparent 1px 3px);
 }
 
+.data-rain {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  opacity: 0.2;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
 .site-header {
   position: sticky;
   top: 0;
@@ -131,6 +142,17 @@ nav a:hover,
   align-items: end;
   padding: clamp(5rem, 10vw, 9rem) clamp(1rem, 4vw, 4rem) clamp(3rem, 7vw, 6rem);
   overflow: hidden;
+}
+
+.hero::before {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background:
+    linear-gradient(90deg, rgba(184, 255, 61, 0.14), transparent 1px) 0 0 / 6rem 100%,
+    linear-gradient(0deg, rgba(52, 231, 255, 0.1), transparent 1px) 0 0 / 100% 4rem;
+  mask-image: radial-gradient(circle at 18% 48%, black, transparent 62%);
+  pointer-events: none;
 }
 
 .hero-media {
@@ -277,6 +299,32 @@ footer {
   background: rgba(5, 6, 10, 0.78);
 }
 
+.ticker {
+  overflow: hidden;
+  border-block: 1px solid var(--line);
+  background: #b8ff3d;
+  color: #111509;
+  font-family: "Cascadia Mono", "SFMono-Regular", Consolas, monospace;
+  font-size: 0.84rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: ticker 22s linear infinite;
+}
+
+.ticker span {
+  padding: 0.7rem 2rem;
+  white-space: nowrap;
+}
+
+.ticker span::before {
+  content: "// ";
+}
+
 .split,
 .contact {
   display: grid;
@@ -361,6 +409,114 @@ footer {
   min-width: 7rem;
 }
 
+.console-section {
+  background:
+    linear-gradient(180deg, rgba(255, 62, 165, 0.08), transparent 28%),
+    rgba(5, 6, 10, 0.88);
+}
+
+.console-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(18rem, 0.6fr);
+  gap: 1rem;
+}
+
+.terminal,
+.telemetry {
+  border: 1px solid rgba(52, 231, 255, 0.28);
+  background: rgba(2, 5, 10, 0.9);
+  box-shadow: var(--shadow);
+}
+
+.terminal {
+  min-height: 25rem;
+  overflow: hidden;
+}
+
+.terminal-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.06);
+  font-family: "Cascadia Mono", "SFMono-Regular", Consolas, monospace;
+}
+
+.terminal-bar span {
+  width: 0.72rem;
+  height: 0.72rem;
+  border-radius: 50%;
+  background: var(--pink);
+}
+
+.terminal-bar span:nth-child(2) {
+  background: var(--amber);
+}
+
+.terminal-bar span:nth-child(3) {
+  background: var(--green);
+}
+
+.terminal-bar strong {
+  margin-left: 0.5rem;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.terminal pre {
+  min-height: 20rem;
+  margin: 0;
+  padding: 1rem;
+  color: var(--green);
+  font-family: "Cascadia Mono", "SFMono-Regular", Consolas, monospace;
+  font-size: clamp(0.78rem, 1.4vw, 0.95rem);
+  line-height: 1.7;
+  white-space: pre-wrap;
+}
+
+.telemetry {
+  display: grid;
+  align-content: start;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.metric {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.05);
+  font-family: "Cascadia Mono", "SFMono-Regular", Consolas, monospace;
+}
+
+.metric span {
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.metric strong {
+  color: var(--cyan);
+  font-size: 1.4rem;
+}
+
+.meter {
+  height: 1rem;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.meter span {
+  display: block;
+  width: var(--level);
+  height: 100%;
+  background: linear-gradient(90deg, var(--green), var(--cyan), var(--pink));
+  animation: pulse 1.6s ease-in-out infinite alternate;
+}
+
 .manifesto {
   background:
     linear-gradient(90deg, rgba(52, 231, 255, 0.12), transparent 38%),
@@ -404,7 +560,8 @@ footer {
   .split,
   .contact,
   .project-grid,
-  .principles {
+  .principles,
+  .console-grid {
     grid-template-columns: 1fr;
   }
 
@@ -425,6 +582,37 @@ footer {
 
   .project-card {
     min-height: 18rem;
+  }
+}
+
+@keyframes ticker {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes pulse {
+  from {
+    filter: saturate(1);
+  }
+
+  to {
+    filter: saturate(1.8) brightness(1.2);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .ticker-track,
+  .meter span {
+    animation: none;
   }
 }
 

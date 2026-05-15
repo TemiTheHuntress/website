@@ -1,0 +1,6 @@
+{
+  "scripts": {
+    "deploy": "rm -rf dist && mkdir -p dist && cp -R assets dist/assets && cp index.html styles.css script.js dist/",
+    "build": "npm run deploy"
+  }
+}

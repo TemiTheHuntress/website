@@ -10,11 +10,12 @@
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
+    <canvas class="data-rain" id="data-rain" aria-hidden="true"></canvas>
     <div class="noise" aria-hidden="true"></div>
     <header class="site-header">
       <a class="brand" href="#top" aria-label="Back to top">
         <span class="brand-mark">DW</span>
-        <span>Definitely Website</span>
+        <span>TemiNet</span>
       </a>
       <nav aria-label="Primary navigation">
         <a href="#about">About</a>
@@ -27,11 +28,11 @@
       <section class="hero" aria-labelledby="hero-title">
         <div class="hero-media" aria-hidden="true"></div>
         <div class="hero-content">
-          <p class="eyebrow">personal site / digital junk drawer / mildly supervised chaos</p>
-          <h1 id="hero-title">I build questionable projects and then give them a domain name.</h1>
+          <p class="eyebrow">teminet uplink / bad ideas over fiber / neon coping mechanism</p>
+          <h1 id="hero-title">Tech experiments from the budget end of the dystopia.</h1>
           <p class="hero-copy">
-            Welcome to the glamorous command center where half-finished ideas, cursed commits,
-            and tiny victories glow under neon lighting they absolutely did not earn.
+            I build small websites, scripts, automations, and other digital contraptions that
+            probably should have stayed in a notes app. They did not. Welcome to the evidence.
           </p>
           <div class="hero-actions">
             <a class="button primary" href="#projects">Inspect the damage</a>
@@ -41,7 +42,7 @@
         <aside class="system-panel" aria-label="Current operating conditions">
           <div class="panel-row">
             <span>mood</span>
-            <strong>productive, allegedly</strong>
+            <strong>overclocked sarcasm</strong>
           </div>
           <div class="panel-row">
             <span>uptime</span>
@@ -49,15 +50,32 @@
           </div>
           <div class="panel-row">
             <span>build status</span>
-            <strong>it works on my machine</strong>
+            <strong>green enough</strong>
+          </div>
+          <div class="panel-row">
+            <span>threat model</span>
+            <strong>my own ideas</strong>
           </div>
         </aside>
+      </section>
+
+      <section class="ticker" aria-label="System ticker">
+        <div class="ticker-track">
+          <span>signal acquired</span>
+          <span>deploy gods unimpressed</span>
+          <span>coffee dependency unresolved</span>
+          <span>bug reports accepted under protest</span>
+          <span>cyberdeck held together by CSS</span>
+          <span>signal acquired</span>
+          <span>deploy gods unimpressed</span>
+          <span>coffee dependency unresolved</span>
+        </div>
       </section>
 
       <section id="about" class="section split" aria-labelledby="about-title">
         <div>
           <p class="eyebrow">about</p>
-          <h2 id="about-title">Somewhere between hobbyist, tinkerer, and warranty violation.</h2>
+          <h2 id="about-title">Somewhere between tinkerer, technician, and warranty violation.</h2>
         </div>
         <div class="copy-stack">
           <p>
@@ -119,6 +137,41 @@
         </div>
       </section>
 
+      <section class="section console-section" aria-labelledby="console-title">
+        <div class="section-heading">
+          <p class="eyebrow">live console</p>
+          <h2 id="console-title">The machine says it is fine, which is legally distinct from true.</h2>
+        </div>
+        <div class="console-grid">
+          <div class="terminal" aria-label="Project terminal output">
+            <div class="terminal-bar">
+              <span></span>
+              <span></span>
+              <span></span>
+              <strong>teminet://ops</strong>
+            </div>
+            <pre id="terminal-feed" aria-live="polite"></pre>
+          </div>
+          <div class="telemetry" aria-label="Site telemetry">
+            <div class="metric">
+              <span>signal</span>
+              <strong id="signal">91%</strong>
+            </div>
+            <div class="metric">
+              <span>cope</span>
+              <strong id="cope">64%</strong>
+            </div>
+            <div class="metric">
+              <span>bugs</span>
+              <strong id="bugs">??</strong>
+            </div>
+            <div class="meter">
+              <span style="--level: 82%"></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section class="section manifesto" aria-labelledby="manifesto-title">
         <p class="eyebrow">operating principles</p>
         <h2 id="manifesto-title">Ship tiny, complain artistically, learn anyway.</h2>
@@ -146,8 +199,8 @@
     </main>
 
     <footer>
-      <span>&copy; <span id="year"></span> Definitely Website.</span>
-      <span>Powered by static files and spite.</span>
+        <span>&copy; <span id="year"></span> TemiNet.</span>
+      <span>Static files, neon lies, and suspicious confidence.</span>
     </footer>
 
     <script src="script.js"></script>
