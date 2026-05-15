@@ -1,6 +1,14 @@
 {
+  "private": true,
   "scripts": {
-    "deploy": "rm -rf dist && mkdir -p dist && cp -R assets dist/assets && cp index.html styles.css script.js dist/",
-    "build": "npm run deploy"
-  }
+    "dev": "next dev",
+    "build": "next build",
+    "deploy": "next build"
+  },
+  "dependencies": {
+    "next": "^15.3.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {}
 }

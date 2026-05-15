@@ -1,11 +1,18 @@
-# Definitely Website
+# TemiNet
 
-A static personal site for my domain. Funny, cynical, cyberpunk, and intentionally free of a build step.
+A Next.js personal site for my domain. Funny, cynical, cyberpunk, and statically exported for Cloudflare Pages.
+
+## Local dev
+
+```sh
+npm install
+npm run dev
+```
 
 ## Cloudflare Pages
 
-- Framework preset: `None`
-- Build command: `npm run build`
-- Build output directory: `dist`
+- Framework preset: `Next.js`
+- Build command: `npm run deploy`
+- Build output directory: `out`
 
-The deploy command copies the static site into `dist`, and Cloudflare Pages serves `dist/index.html`.
+`next.config.js` uses `output: "export"`, so the build produces static files in `out`.
