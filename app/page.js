@@ -1,19 +1,3 @@
-"use client";
-
-import { useEffect, useRef, useState } from "react";
-
-const logLines = [
-  "booting TemiNet personal uplink...",
-  "mounting /projects: success, mostly",
-  "scanning abandoned folders: too many",
-  "loading sarcasm module: online",
-  "checking Cloudflare Pages: please clap",
-  "routing bad ideas through neon filter",
-  "warning: confidence exceeds test coverage",
-  "deploy target: static files with delusions",
-  "status: operational enough",
-];
-
 const tickerItems = [
   "signal acquired",
   "deploy gods unimpressed",
@@ -25,95 +9,21 @@ const tickerItems = [
   "coffee dependency unresolved",
 ];
 
+const terminalLines = [
+  "> booting TemiNet personal uplink...",
+  "> mounting /projects: success, mostly",
+  "> loading sarcasm module: online",
+  "> checking Cloudflare Pages: please clap",
+  "> warning: confidence exceeds test coverage",
+  "> status: operational enough",
+];
+
 export default function Home() {
-  const canvasRef = useRef(null);
-  const bootTime = useRef(Date.now());
-  const [year, setYear] = useState("");
-  const [uptime, setUptime] = useState("calculating regret");
-  const [feed, setFeed] = useState([`> ${logLines[0]}`]);
-  const [telemetry, setTelemetry] = useState({ signal: 91, cope: 64, bugs: "??" });
-
-  useEffect(() => {
-    setYear(String(new Date().getFullYear()));
-
-    const uptimeTimer = window.setInterval(() => {
-      const elapsedSeconds = Math.max(0, Math.floor((Date.now() - bootTime.current) / 1000));
-      const minutes = Math.floor(elapsedSeconds / 60);
-      const seconds = String(elapsedSeconds % 60).padStart(2, "0");
-      setUptime(`${minutes}:${seconds} since refresh`);
-    }, 1000);
-
-    let feedIndex = 1;
-    const feedTimer = window.setInterval(() => {
-      const nextLine = `> ${logLines[feedIndex % logLines.length]}`;
-      setFeed((currentFeed) => [...currentFeed.slice(-8), nextLine]);
-      feedIndex += 1;
-    }, 1500);
-
-    const telemetryTimer = window.setInterval(() => {
-      setTelemetry({
-        signal: 88 + Math.floor(Math.random() * 10),
-        cope: 52 + Math.floor(Math.random() * 35),
-        bugs: Math.floor(Math.random() * 9),
-      });
-    }, 1800);
-
-    return () => {
-      window.clearInterval(uptimeTimer);
-      window.clearInterval(feedTimer);
-      window.clearInterval(telemetryTimer);
-    };
-  }, []);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    const context = canvas?.getContext("2d");
-
-    if (!canvas || !context || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      return undefined;
-    }
-
-    let frameId = 0;
-    let rainColumns = [];
-
-    function resizeRain() {
-      const pixelRatio = window.devicePixelRatio || 1;
-      canvas.width = Math.floor(window.innerWidth * pixelRatio);
-      canvas.height = Math.floor(window.innerHeight * pixelRatio);
-      context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
-
-      const columnCount = Math.ceil(window.innerWidth / 18);
-      rainColumns = Array.from({ length: columnCount }, () => Math.random() * window.innerHeight);
-    }
-
-    function drawRain() {
-      context.fillStyle = "rgba(5, 6, 10, 0.08)";
-      context.fillRect(0, 0, window.innerWidth, window.innerHeight);
-      context.fillStyle = "rgba(184, 255, 61, 0.65)";
-      context.font = "14px Cascadia Mono, Consolas, monospace";
-
-      rainColumns.forEach((y, index) => {
-        const character = Math.random() > 0.5 ? "1" : "0";
-        context.fillText(character, index * 18, y);
-        rainColumns[index] = y > window.innerHeight + 20 ? 0 : y + 18;
-      });
-
-      frameId = window.requestAnimationFrame(drawRain);
-    }
-
-    resizeRain();
-    drawRain();
-    window.addEventListener("resize", resizeRain);
-
-    return () => {
-      window.cancelAnimationFrame(frameId);
-      window.removeEventListener("resize", resizeRain);
-    };
-  }, []);
+  const year = new Date().getFullYear();
 
   return (
     <>
-      <canvas className="data-rain" ref={canvasRef} aria-hidden="true" />
+      <div className="data-rain" aria-hidden="true" />
       <div className="noise" aria-hidden="true" />
       <header className="site-header">
         <a className="brand" href="#top" aria-label="Back to top">
@@ -149,7 +59,7 @@ export default function Home() {
             </div>
             <div className="panel-row">
               <span>uptime</span>
-              <strong>{uptime}</strong>
+              <strong>static, smug</strong>
             </div>
             <div className="panel-row">
               <span>build status</span>
@@ -217,7 +127,9 @@ export default function Home() {
                 A majestic heap of little tools that save five minutes after only four hours of
                 setup. This is called optimization.
               </p>
-              <a href="https://github.com/TemiTheHuntress/website" rel="noreferrer">GitHub</a>
+              <a href="https://github.com/TemiTheHuntress/website" rel="noreferrer">
+                GitHub
+              </a>
             </article>
 
             <article className="project-card">
@@ -237,7 +149,7 @@ export default function Home() {
 
         <section className="section console-section" aria-labelledby="console-title">
           <div className="section-heading">
-            <p className="eyebrow">live console</p>
+            <p className="eyebrow">console</p>
             <h2 id="console-title">The machine says it is fine, which is legally distinct from true.</h2>
           </div>
           <div className="console-grid">
@@ -248,20 +160,20 @@ export default function Home() {
                 <span />
                 <strong>teminet://ops</strong>
               </div>
-              <pre aria-live="polite">{feed.join("\n")}</pre>
+              <pre>{terminalLines.join("\n")}</pre>
             </div>
             <div className="telemetry" aria-label="Site telemetry">
               <div className="metric">
                 <span>signal</span>
-                <strong>{telemetry.signal}%</strong>
+                <strong>94%</strong>
               </div>
               <div className="metric">
                 <span>cope</span>
-                <strong>{telemetry.cope}%</strong>
+                <strong>68%</strong>
               </div>
               <div className="metric">
                 <span>bugs</span>
-                <strong>{telemetry.bugs}</strong>
+                <strong>3</strong>
               </div>
               <div className="meter">
                 <span style={{ "--level": "82%" }} />
@@ -291,7 +203,9 @@ export default function Home() {
           </p>
           <div className="contact-links">
             <a href="mailto:noahthefounder@protonmail.com">Email</a>
-            <a href="https://github.com/TemiTheHuntress/website" rel="noreferrer">GitHub</a>
+            <a href="https://github.com/TemiTheHuntress/website" rel="noreferrer">
+              GitHub
+            </a>
           </div>
         </section>
       </main>
